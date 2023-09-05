@@ -12,8 +12,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@PageTitle("Contacts")
-@Route(value = "")
+@PageTitle("Contacts | Vaadin CRM")
+@Route(value = "", layout = MainLayout.class)
 public class ListView extends VerticalLayout {
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
