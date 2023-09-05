@@ -48,7 +48,7 @@ public class ContactForm extends FormLayout {
         add( firstName, lastName, email, company, status, createButtonLayout());
     }
 
-    public void serContact(Contact contact){
+    public void setContact(Contact contact){
 
         this.contact = contact;
         binder.readBean(contact);
@@ -111,14 +111,14 @@ public class ContactForm extends FormLayout {
         }
     }
 
-    public Registration addDeleteListener(ComponentEventListener<DeleteEvent> listener) {
+    public Registration addDeleteListener(Class<DeleteEvent> deleteEventClass, ComponentEventListener<DeleteEvent> listener) {
         return addListener(DeleteEvent.class, listener);
     }
 
-    public Registration addSaveListener(ComponentEventListener<SaveEvent> listener) {
+    public Registration addSaveListener(Class<SaveEvent> saveEventClass, ComponentEventListener<SaveEvent> listener) {
         return addListener(SaveEvent.class, listener);
     }
-    public Registration addCloseListener(ComponentEventListener<CloseEvent> listener) {
+    public Registration addCloseListener(Class<CloseEvent> closeEventClass, ComponentEventListener<CloseEvent> listener) {
         return addListener(CloseEvent.class, listener);
     }
 }
