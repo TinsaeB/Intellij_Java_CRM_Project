@@ -30,7 +30,7 @@ public class MainLayout extends AppLayout {
         RouterLink listView = new RouterLink("List", ListView.class);
         listView.setHighlightCondition(HighlightConditions.sameLocation());
 
-        addToDrawer(new VerticalLayout(listView));
+        addToDrawer(new VerticalLayout(listView, new RouterLink("Dashboard", DashboardView.class)));
     }
 
 }
