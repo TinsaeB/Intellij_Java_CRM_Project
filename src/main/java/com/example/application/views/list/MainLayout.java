@@ -1,7 +1,9 @@
 package com.example.application.views.list;
 
+import com.example.application.security.SecurityService;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -10,7 +12,11 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
 public class MainLayout extends AppLayout {
-    public MainLayout(){
+
+    private final SecurityService securityService;
+
+    public MainLayout(SecurityService securityService){
+        this.securityService = securityService;
         createHeader();
         createDrawer();
     }
@@ -19,7 +25,13 @@ public class MainLayout extends AppLayout {
         H1 logo = new H1("Vaadin CRM");
         logo.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.MEDIUM);
 
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo);
+
+        String u = securityService.getAuthenticatedUser().getUsername();
+        Button logout = new Button("Log out " + u, e -> securityService.logout());
+
+        var header = new HorizontalLayout(new DrawerToggle(), logo, logout);
+
+        header = new HorizontalLayout(new DrawerToggle(), logo);
         header.expand(logo);
         header.setSizeFull();
         header.addClassNames("py-0", "px-m");
